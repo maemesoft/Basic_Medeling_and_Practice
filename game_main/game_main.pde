@@ -91,7 +91,7 @@ void draw()
     stage_check(width/8, height/2 + 300);
     character._draw();
   }
-  else if (room == 3)
+  else if (room == 3) // 
   {
     for ( int i=0 ; i < plat_num ; i++)
     {
