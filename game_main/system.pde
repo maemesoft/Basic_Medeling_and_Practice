@@ -11,6 +11,42 @@ void keyReleased() {
   checkey(key, false);
 }
 
+
+boolean checkey(char k, boolean b) 
+{
+  switch (k) 
+  {
+    case 'a':
+    case 'A':
+      return key_a = b;
+ 
+    case 'd':
+    case 'D':
+      return key_d = b;
+ 
+    case 's':
+    case 'S':
+      return key_s = b;
+ 
+    case 'w':
+    case 'W':
+      return key_w = b;
+ 
+    default:
+      return b;
+  }
+}
+
+void stage_check(int _x, int _y)
+{
+  if (character.stage != room)
+    {
+      character.x = _x;
+      character.y = _y;
+      character.stage = room;
+    }
+}
+
 /*
 boolean checkhit_rect( float x1s, float x1size, float y1s, float y1size, float x2s, float x2size, float y2s, float y2size)
 {
@@ -62,27 +98,3 @@ boolean checkhit_rect( float x1s, float x1size, float y1s, float y1size, float x
   
 }
 */
-boolean checkey(char k, boolean b) 
-{
-  switch (k) 
-  {
-    case 'a':
-    case 'A':
-      return key_a = b;
- 
-    case 'd':
-    case 'D':
-      return key_d = b;
- 
-    case 's':
-    case 'S':
-      return key_s = b;
- 
-    case 'w':
-    case 'W':
-      return key_w = b;
- 
-    default:
-      return b;
-  }
-}

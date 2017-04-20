@@ -49,6 +49,9 @@ class nemo extends object
     move_basic();
     move_jump();
     
+    xend = x + xsize;
+    yend = y + ysize;
+    
     for ( int i=0 ; i < plat_num ; i++)
     {
       if (this.stage == plat[i].stage)
@@ -58,7 +61,7 @@ class nemo extends object
           xspeed = 0;
           this.x = plat[i].xend;
         }
-        else if ((plat[i].x < this.x + xsize) && (plat[i].yend > y) && (plat[i].coli == coli_left) && (xspeed > 0))
+        else if ((plat[i].x < this.x + xsize) && (plat[i].yend > y) && (plat[i].y < yend) && (plat[i].coli == coli_left) && (xspeed > 0))
         {
           xspeed = 0;
           this.x = plat[i].x - xsize;
@@ -112,7 +115,7 @@ class nemo extends object
         {
           if ((yend >= plat[i].y) && (xend > plat[i].x) && (x < plat[i].xend) && (yend < plat[i].yend) && plat[i].coli == coli_up)  
           {
-            if ( (jump==true) && (yspeed > 0) )
+            if ( (jump==true) && (yspeed >= 0) )
             {
               jump=false;
             }

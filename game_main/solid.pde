@@ -8,7 +8,7 @@ class solid extends object
   void _draw()
   {
     rect(x, y, xsize, ysize);
-    update();
+    //update();
   }
   
   void update()

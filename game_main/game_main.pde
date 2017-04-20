@@ -85,22 +85,23 @@ void draw()
     {
       if (plat[i].stage == room) plat[i]._draw();
     }
+    
+    stage_check(width/8, height/2 + 300);
+    character._draw();
+  }
+  else if (room == 3)
+  {
+    for ( int i=0 ; i < plat_num ; i++)
+    {
+      if (plat[i].stage == room) plat[i]._draw();
+    }
     for ( int i=0 ; i < tri_num ; i++)
     {
       if (tri[i].stage == room) 
       tri[i]._draw();
     }
-    if (character.stage == 1)
-    {
-      character.x = width/8;
-      character.y = height/2 + 300;
-      character.stage = 2;
-    }
+    stage_check(100, 200);
     character._draw();
-  }
-  else
-  {
-
   }
   
   if (character.show == 0)
