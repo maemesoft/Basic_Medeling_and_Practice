@@ -47,6 +47,16 @@ void stage_check(int _x, int _y)
     }
 }
 
+boolean checkhit_point( float x1, float y1, float x2, float y2, float dist )
+{
+  if ( ( abs(x1 - x2) < dist ) && ( abs(y1 - y2) < dist ) ) 
+  {
+    return true;
+  }
+  
+  return false;
+}
+
 /*
 boolean checkhit_rect( float x1s, float x1size, float y1s, float y1size, float x2s, float x2size, float y2s, float y2size)
 {

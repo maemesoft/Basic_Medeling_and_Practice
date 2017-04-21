@@ -1,12 +1,10 @@
 nemo character;
-solid[] plat = new solid[20];
-triang[] tri = new triang[10];
+solid[] plat = new solid[50];
+triang[] tri = new triang[50];
 Table map;
-int room = 0;
+int room = 3;
 int plat_num = 0;
 int tri_num = 0;
-
-// commit test
 
 void setup()
 {
@@ -91,7 +89,7 @@ void draw()
     stage_check(width/8, height/2 + 300);
     character._draw();
   }
-  else if (room == 3) // 테스트2
+  else if (room == 3)
   {
     for ( int i=0 ; i < plat_num ; i++)
     {
@@ -104,11 +102,20 @@ void draw()
     }
     stage_check(100, 200);
     character._draw();
+    if (character.yend > 650)
+    {
+      character.show = 0;
+    }
+  }
+  else if (room == 4)
+  {
+    
   }
   
   if (character.show == 0)
   {
-    background(255, 0, 0, 128);
+    fill(255, 0, 0, 64);
+    rect(0, 0, width, height);
   }
   
 }

@@ -68,6 +68,7 @@ class nemo extends object
         }
       }
     }
+    
   }
   
   void move_basic()
