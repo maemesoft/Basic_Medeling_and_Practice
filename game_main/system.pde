@@ -1,7 +1,36 @@
-boolean key_a, key_d, key_w, key_s;
+import processing.sound.*;
+
+nemo character;
+solid[] plat = new solid[28];
+triang[] tri = new triang[44];
+Table map;
+int room = -1;
+int plat_num = 0;
+int tri_num = 0;
+int score = 2000000000;
+
+Timer[] timer = new Timer[3];
+// timer[0] = stage4 triangle
+// timer[1] = character die
+// timer[2] = start
+
+SoundFile sound_intro_bgm;
+SoundFile sound_ending;
+SoundFile sound_game_bgm;
+
+PImage image_ending;
+PImage image_ending_text;
+
+Dragon dragon;
+
+boolean hard = false;
+
+boolean intro_bgm_play = false, ending_play = false, game_bgm_play = false;
 
 final int PLAT=1, TRI=2;
 final int coli_up = 1, coli_left = 2, coli_right = 3, coli_down = 4;
+
+boolean key_a, key_d, key_w, key_s, key_r;
 
 void keyPressed() {
   checkey(key, true);
@@ -31,20 +60,59 @@ boolean checkey(char k, boolean b)
     case 'w':
     case 'W':
       return key_w = b;
+
+    case 'r':
+    case 'R':
+      return key_r = b;
  
     default:
       return b;
   }
 }
 
-void stage_check(int _x, int _y)
+class Timer
 {
-  if (character.stage != room)
+  int savedtime; // When Timer started
+  int totaltime; // How long Timer should last
+
+  Timer()
+  {
+    totaltime = 0;
+  }
+
+  void start()
+  {
+    savedtime = millis();
+  }
+
+  boolean isFinished()
+  {
+    int passedtime = millis() - savedtime;
+    return (passedtime >= totaltime) ? true : false;
+  }
+}
+
+void stage_check(int _x, int _y, int _check)
+{
+  if ( (character.stage != room) && _check == 1 )
     {
       character.x = _x;
       character.y = _y;
       character.stage = room;
+      if (room == 4) timer[0].start();
     }
+  else if (_check == 0)
+  {
+    character.x = _x;
+    character.y = _y;
+    character.stage = room;
+    character.show = 1;
+    character.play_die = false;
+    fill(255, 255, 255, 255);
+  }
+
+    
+    
 }
 
 boolean checkhit_point( float x1, float y1, float x2, float y2, float dist )

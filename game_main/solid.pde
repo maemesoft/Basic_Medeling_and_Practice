@@ -8,11 +8,16 @@ class solid extends object
   void _draw()
   {
     rect(x, y, xsize, ysize);
-    //update();
+    update();
   }
   
   void update()
   {
-    
+    if (trigger == 1)
+    {
+      y -= 1;
+      yend = y + ysize;
+      
+    }
   }
 }

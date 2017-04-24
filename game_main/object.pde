@@ -2,6 +2,10 @@ class object
 {
   float x;
   float y;
+  float x_ori;
+  float y_ori;
+  float xend_ori;
+  float yend_ori;
   float size;
   float xsize;
   float ysize;
@@ -11,6 +15,7 @@ class object
   int coli;
   int stage;
   int show=1;
+  int trigger=0;
   
   object(float _x, float _y, float _size)
   {
@@ -23,6 +28,11 @@ class object
 
     xend = x + size;
     yend = y + size;
+
+    x_ori = x;
+    y_ori = y;
+    xend_ori = xend;
+    yend_ori = yend;
   }
   
   object(float _x, float _y, float _xsize, float _ysize)
@@ -34,6 +44,12 @@ class object
 
     xend = x + xsize;
     yend = y + ysize;
+
+    x_ori = x;
+    y_ori = y;
+    
+    xend_ori = xend;
+    yend_ori = yend;
   }
   
   object(float _x, float _y, float _xsize, float _ysize, int _stage)
@@ -46,6 +62,12 @@ class object
 
     xend = x + xsize;
     yend = y + ysize;
+
+    x_ori = x;
+    y_ori = y;
+    
+    xend_ori = xend;
+    yend_ori = yend;
   }
   
   object(float _x, float _y, float _xsize, float _ysize, int _coli, int _stage)
@@ -59,6 +81,13 @@ class object
 
     xend = x + xsize;
     yend = y + ysize;
+
+
+    x_ori = x;
+    y_ori = y;
+    
+    xend_ori = xend;
+    yend_ori = yend;
   }
   
   void _draw()
