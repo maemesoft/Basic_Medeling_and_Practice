@@ -2,12 +2,14 @@
 class nemo extends object
 {
   PImage die;
+  PImage nemo_left;
+  PImage nemo_right;
   
   float xspeed;
   float yspeed;
   float xaccel;
   float yaccel;
-  
+
   boolean jump=false;
   boolean play_die = false;
   
@@ -30,9 +32,13 @@ class nemo extends object
     xaccel = 0;
     stage = 1;
     
+   
+    
    sound_jump = new SoundFile(game_main.this, "jump.wav");
    sound_die = new SoundFile(game_main.this, "die.mp3");
    
+   nemo_right = loadImage("nemo_1.png");
+   nemo_left = loadImage("nemo_2.png");
    die = loadImage("die.png");
   }
   
@@ -40,7 +46,10 @@ class nemo extends object
   {
     if (show == 1)
     {
-      rect(x, y, size, size);
+      if (xspeed >= 0) image(nemo_right, x, y, size, size);
+      else image(nemo_left, x, y, size, size);
+
+      //rect(x, y, size, size);
       update();
     }
     else if ( show == 0 )
@@ -87,24 +96,7 @@ class nemo extends object
     
     xend = x + xsize;
     yend = y + ysize;
-    
-    for ( int i=0 ; i < plat_num ; i++)
-    {
-      if (this.stage == plat[i].stage)
-      {
-        if ((plat[i].xend > this.x) && (plat[i].coli == coli_right) && (xspeed < 0))
-        {
-          xspeed = -xspeed;
-          this.x = plat[i].xend;
-        }
-        else if ((plat[i].x < this.x + xsize) && (plat[i].yend > y) && (plat[i].y < yend) && (plat[i].coli == coli_left) && (xspeed > 0))
-        {
-          xspeed = -xspeed;
-          this.x = plat[i].x - xsize;
-        }
-      }
-    }
-    
+
   }
   
   void move_basic()
@@ -138,10 +130,25 @@ class nemo extends object
     x += xspeed;
     
     yend = y + size;
-
     
-
     yspeed += gravity;
+    
+    for ( int i=0 ; i < plat_num ; i++)
+    {
+      if (this.stage == plat[i].stage)
+      {
+        if ((plat[i].xend > this.x) && (plat[i].coli == coli_right) && (xspeed < 0))
+        {
+          xspeed = -xspeed;
+          this.x = plat[i].xend;
+        }
+        else if ((plat[i].x < this.x + xsize) && (plat[i].yend > y) && (plat[i].y < yend) && (plat[i].coli == coli_left) && (xspeed > 0))
+        {
+          xspeed = -xspeed;
+          this.x = plat[i].x - xsize;
+        }
+      }
+    }
   }
 
   void move_jump()

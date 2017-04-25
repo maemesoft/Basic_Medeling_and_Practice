@@ -1,15 +1,20 @@
 class triang extends object
 {
+  PImage enemy;
+  
   triang(float _x, float _y, float _xsize, float _ysize, int _stage)
   {
     super(_x, _y, _xsize, _ysize, _stage);
+    
+    enemy = loadImage("enemy.png");
   }
   
   void _draw()
   {
     if (show == 1)
     {
-      triangle(x, yend, (x+xend)/2, y, xend, yend);
+      image(enemy, x, y, xsize, ysize);
+      //triangle(x, yend, (x+xend)/2, y, xend, yend);
       update();
     }
   }
